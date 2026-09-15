@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Simple Form + Video </title>
+</head>
+<body>
+
+  <h1>HTML Practice: Form and Video</h1>
+
+  <h2>1. Video Element</h2>
+
+  <video controls width="640" height="315" autoplay muted>
+    <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+    <source src="https://www.w3schools.com/html/mov_bbb.ogg" type="video/ogg">
+    Your browser does not support the video tag.
+  </video>
+
+  <p>This is a sample video. Try the play button, volume slider, and fullscreen.</p>
+
+  <hr>
+
+  <h2>2. Contact Form</h2>
+
+  <form action="#" method="post">
+
+    <p>
+      <label for="fullname">Your name:</label><br>
+      <input type="text" id="fullname" name="fullname" placeholder="Enter your name">
+    </p>
+
+    <p>
+      <label for="email">Email:</label><br>
+      <input type="email" id="email" name="email" placeholder="you@example.com" required>
+    </p>
+
+    <p>
+      <label for="country">Where are you from?</label><br>
+      <select id="country" name="country">
+        <option value="">-- please choose --</option>
+        <option value="usa">United States</option>
+        <option value="canada">Canada</option>
+        <option value="uk">United Kingdom</option>
+        <option value="other">Other</option>
+      </select>
+    </p>
+
+    <p>
+      How did you find this page?<br>
+      <input type="radio" id="google" name="found" value="google">
+      <label for="google">Google</label><br>
+
+      <input type="radio" id="friend" name="found" value="friend">
+      <label for="friend">A friend told me</label><br>
+
+      <input type="radio" id="other" name="found" value="other">
+      <label for="other">Other</label>
+    </p>
+
+    <p>
+      <label for="message">Your message:</label><br>
+      <textarea id="message" name="message" rows="35" cols="70" placeholder="Write something here..."></textarea>
+    </p>
+
+    <p>
+      <input type="checkbox" id="newsletter" name="newsletter" value="yes">
+      <label for="newsletter">Send me updates (totally optional)</label>
+    </p>
+
+    <p>
+      <button type="submit">Send</button>
+      <button type="reset">Clear form</button>
+    </p>
+    <p>
+        <input type="date" id="date" name="date">
+        <label for="date">Today's Date:</label>
+    </p>
+    <p>
+        <input type="color" id="color" name="color">
+        <label for="color">Select a Color:</label>
+    </p>
+  </form>
+
+  <hr>
+
+  <p><small>Exercise task: Add one more input field of any type you want (color, number, date, range, file, etc.)</small></p>
+
+</body>
+</html>
