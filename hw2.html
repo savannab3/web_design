@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<head lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Favorite Books</title>
+</head>
+<style>
+body {
+    
+      font-family: system-ui, sans-serif;
+      margin: 30px;
+      background: #f8f9fa;
+      line-height: 1.5;
+}
+
+h1 {
+    color: darkmagenta;
+    text-align: center;
+    font-size: 35px;
+}
+    
+h2 {
+    color:blueviolet;
+    text-align: center;
+}
+
+.card {
+    background:#dfefff;
+    border: 2px solid #3498db;
+    padding: 16px;
+    margin: 20px auto;
+    max-width: 500px;
+    border-radius: 8px;
+
+}
+#highlight-card {
+    background: #d4edda;
+    border-color: #f39c12;
+    font-weight: bold;
+    
+}
+
+.mark {
+    background: #ffe066;
+    padding: 3px 7px;
+    border-radius: 4px;
+}
+
+.urgent {
+    color: #e74c3c;
+    font-weight: bold;
+    text-decoration: underline wavy #e74c3c;
+}
+
+.fancy {
+    font-style: italic;
+    color: #27ae60;
+    border-bottom: 2px dotted #27ae60;
+}
+
+.inline-block-demo {
+    display: inline-block;
+    background: #e8f5e9;
+    border: 2px solid #2ecc71;
+    padding: 12px 20px;
+    margin: 8px;
+    border-radius: 6px;
+}
+
+.rainbow {
+    border: 5px solid;
+    border-image: linear-gradient(
+        to right,
+        red,
+        orange,
+        yellow,
+        green,
+        blue,
+        indigo,
+        violet
+    ) 1;
+}
+
+.book-image {
+    display: block;
+    width: 500px;
+    max-width: 100%;
+    margin: 20px auto;
+}
+
+.quote {
+    text-align: center;
+    color: purple;
+    font-size: 18px;
+}
+
+.book-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.book-table th, .book-table td {
+    border: 1px solid #555;
+    padding: 12px;
+    text-align: center;
+}
+
+.book-table th {
+    background-color: beige;
+    color: brown;
+}
+
+a {
+    color: royalblue;
+}
+</style>
+</head>
+
+<div class="card">
+    <h1>A Few of My Favorite Books</h1>
+    <h2 style="text-align: center;">
+        Out of an Endless Collection of Stories
+    </h2>
+
+    <hr>
+
+    <p>
+        Books can help to teach us so many things about ourselves
+        and the world around us.
+    </p>
+
+    <p>
+        I have compiled a list of my current favorite reads below.
+        <br><span class="mark">I hope you enjoy!</span>
+    </p>
+</div>
+
+<div class="card rainbow">
+    <h2>The Ultimate Book Nook</h2>
+
+    <p>
+        Reading gives us the opportunity to explore new worlds,
+        learn new ideas, and experience stories from different 
+        perspectives.
+    </p>
+
+    <img
+    src="bookcase.jpeg"
+    class="book-image"
+    alt="Books on a Shelf"
+    >
+
+    <p class="quote">
+        <i>"The more that you read, the more things you will know.
+            <br>
+            The more that you learn, the more places you'll go."
+            - Dr. Seuss
+        </i>
+    </p>
+</div>
+
+<div class="card" id="highlight-card">
+    <h2>Why I Read</h2>
+    <p>
+        Books can help us
+        <span class="mark">learn new things</span>
+        about ourselves and the world around us.
+    </p>
+<p>
+    Books can also help us
+    <span class="mark urgent">improve our focus</span>
+    by diverting attention from our mobile devices.
+</p>
+<p>
+    I enjoy books that 
+    <span class="fancy">help me escape</span>
+    from my everyday into a magical realm.
+</p>
+    
+</div>
+
+<div class="card">
+    <h2>My Favorite Genres</h2>
+    <p>
+        Here are some of my favorite types of books:
+    </p>
+    <div class="inline-block-demo">
+        Fantasy
+    </div>
+    <div class="inline-block-demo">
+        Romance
+    </div>
+    <div class="inline-block-demo">
+        Poetry
+    </div>
+    <div class="inline-block-demo">
+        Spirituality
+    </div>
+    <div class="inline-block-demo">
+        Mystery
+    </div>
+</div>
+
+<div class="card">
+    <h2>Book Links</h2>
+
+    <p>Find these books and more at:</p>
+    <p>
+        <a href="https://help.libbyapp.com/en-us/6103.htm"
+        target="_blank">
+        Libby
+    </a>
+    </p>
+    <p>
+        <a href="https://goodreads.com/"
+        target="_blank">
+        Goodreads
+    </a>
+    </p>
+    <p>
+        <a href="https://bookoutlet.com/"
+        target="blank">
+        BookOutlet
+    </a>
+    </p>
+    
+</div>
+
+<div class="card">
+    <h2>My Favorite Books</h2>
+    <table class="book-table">
+        <tr>
+            <th>
+                Title
+            </th>
+            <th>
+                Author
+            </th>
+            <th>
+                Published Year
+            </th>
+            <th>
+                Genre
+            </th>
+            <th>
+                Link
+            </th>
+        </tr>
+
+        <tr>
+            <td>
+                <b>Eat Pray Love</b>
+            </td>
+            <td>
+                Elizabeth Gilbert
+            </td>
+            <td>
+                2006
+            </td>
+            <td>
+                Memoir
+            </td>
+            <td>
+                <a href="https://www.goodreads.com/en/book/show/19501.Eat_Pray_Love"
+                target="_blank">
+                Goodreads
+                </a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <i>Be Here Now</i>
+            </td>
+            <td>
+                Ram Dass
+            </td>
+            <td>
+                1971
+            </td>
+            <td>
+                Philosophy
+            </td>
+            <td>
+                <a href="https://www.goodreads.com/book/show/9687044"
+                target="_blank">
+                Goodreads
+                </a>
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                <b>The Four Agreements</b>
+            </td>
+            <td>Don Miguel Ruiz</td>
+            <td>
+                1997
+            </td>
+            <td>
+                Self-Help
+            </td>
+            <td>
+                <a href="https://www.goodreads.com/book/show/6596.The_Four_Agreements"
+                    target="_blank">
+                    Goodreads
+                </a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <i>This One Wild and Precious Life</i>
+            </td>
+            <td>
+                Sarah Wilson
+            </td>
+            <td>
+                2020
+            </td>
+            <td>
+                Non-Fiction
+            </td>
+            <td>
+                <a href="https://www.goodreads.com/book/show/54112488-this-one-wild-and-precious-life"
+                target="_blank">
+                Goodreads
+                 </a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <b>It Ends With Us</b>
+            </td>
+            <td>
+                Colleen Hoover
+            </td>
+            <td>
+                2016
+            </td>
+            <td>
+                Romance
+            </td>
+            <td> 
+                <a href="https://www.goodreads.com/book/show/62627512-it-ends-with-us"
+                target="_blank">
+                Goodreads
+                </a>
+            </td>
+        </tr>
+    </table>
+</div>
+</body>
+</html>
+
+
+
