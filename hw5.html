@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MyApp Dashboard</title>
+    <style>
+       
+       body {
+            display: flex;
+            font-family: Arial, sans-serif;
+            height: 100vh;
+            background-color: rgb(198, 196, 198);
+        }
+        .sidebar {
+            width: 200px;
+            background-color: rgb(7, 17, 73);
+            display: flex;
+            gap: 10px;
+            flex-direction: column;
+            height: 100vh;
+            text-align: center;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .sidebar h2 {
+        padding: 25px 20px;
+            font-size: 20px;
+            margin: 10px ;
+            color: white;
+            
+        }
+        .sidebar a {
+            display: block;
+            padding: 12 20px;
+            color: white;
+            text-decoration: none;
+
+        }
+        .sidebar a:hover {
+            background-color: lightskyblue;
+        }
+        
+        .main {
+            flex: 1;
+            padding: 35;
+            background-color: rgb(198, 196, 198) ;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <h2>MyApp</h2>
+        <a href="#">🏠 Dashboard</a>
+        <a href="#">📊 Analytics</a>
+        <a href="#">📁 Projects</a>
+        <a href="#">👥 Team</a>
+        <a href="#">✉️ Messages</a>
+        <a href="#">⚙️ Settings</a>
+        <a href="#">📄 Documents</a>
+        <a href="#">🚪 Logout</a>
+    </div>
+    <div class="main">
+        <h1>Welcome to the Dashboard</h1>
+        <p>Click on the links in the vertical navigation bar on the left.</p>
+    </div>
+</body>
+</html>
