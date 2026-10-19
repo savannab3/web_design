@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Taco Loco Homepage</title>
+
+<style>
+    * {
+        box-sizing: border-box;
+    }
+
+    body {
+        margin: 0;
+        font-family: Arial, Helvetica, sans-serif;
+        background-color: #ece5d6;   
+        color: black;
+        line-height: 1.6;
+    }
+
+    .navbar {
+        background-color: #9d2f21;
+        display: flex;
+        align-items: center;
+        
+    }
+
+    .logo {
+        color: rgb(253, 160, 20);
+        font-size: 22px;
+        font-weight: bold;
+        padding: 15px 20px;
+        white-space: nowrap;
+    }
+
+    .nav-list {
+        list-style: none;
+        display: flex;
+        margin: 0;
+        padding: 0;
+    }
+
+    .nav-list li {
+        position: relative;
+    }
+
+    .nav-list a {
+        display: flex;
+        color: white;
+        text-decoration: none;
+        padding: 15px 20px;
+        font-weight: bold;
+    }
+
+    .nav-list a:hover {
+        background-color: #c84230;
+    }
+
+    .dropdown-content {
+        list-style: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        min-width: 150px;
+        padding: 0;
+        margin 0;
+        background-color: black;
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.2s;
+        z-index: 10;
+       
+    }
+
+    .dropdown:hover .dropdown-content,
+    .dropdown:focus-within .dropdown-content {
+        opacity: 1;
+        visibility: visible;
+    }
+
+    .header {
+        text-align: center;
+        background-color: rgb(253, 160, 20);
+        padding: 35px 25px;
+        border-bottom: 5px solid #9d2f21;
+    }
+
+    .header h1 {
+        color: #9d2721
+        font-size: 40px;
+        margin: 0;
+    }
+
+    main {
+        width: 100%;
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 30px 20px;
+        text-align: center;
+    }
+
+    .main-taco {
+        width: 450px;
+        max-width: 100%;
+        height: auto;
+        margin: 25px auto;
+        border-radius: 20px;
+        transition: transform 0.3s, opacity 0.3s;
+    }
+
+    .main-taco:hover {
+        transform: scale(1.05);
+        opacity: 0.7;
+    }
+
+    .menu-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 25px 0;
+        background-color: white;
+        border-radius: 10px;
+        overflow: hidden;
+    }
+
+    .menu-table th {
+        background-color: #9d2f21;
+        color: white;
+    }
+
+    .menu-table th,
+    .menu-table td {
+        padding: 12px;
+        border: 1px solid #cdcaca;
+    }
+
+    .menu-table tr:hover {
+        background-color: #e6d59f;
+    }
+
+    .special {
+        background-color: #e6d59f;
+        border: 3px solid #d19a0e;
+        border-radius: 20px;
+        padding: 20px;
+        margin: 30px auto;
+        max-width: 600px;
+    }
+
+    .gallery {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+    }
+
+    .gallery img {
+        width: 100%;
+        max-width: 100%;
+        height: 220px;
+        object-fit: cover;
+        border-radius: 15px;
+        transition: transform 0.3s, opacity 0.3s;
+    }
+
+    .gallery img:hover {
+        transform: scale(1.05);
+        opacity: 0.75;
+    }
+
+    .order-button {
+        display: inline-block;
+        background-color: #9d2f21;
+        color: white;
+        text-decoration: none;
+        padding: 15px 30px;
+        margin: 25px;
+        border-radius: 10px;
+        transition: opacity 0.3s;
+    }
+
+    .order-button:hover {
+        opacity: 0.5;
+    }
+
+    footer {
+        background-color: #9d2f21;
+        color: white;
+        text-align: center;
+        padding: 20px;
+    }
+
+    @media (max-width: 600px) {
+        .nav-list {
+            flex-direction: column;
+        }
+
+        .gallery {
+            grid-template-columns: 1fr;
+        }
+    }
+</style>
+</head>
+
+<body>
+    
+    <nav class="navbar">
+        <div class="logo">🌮 TACO LOCO</div>
+        <ul class="nav-list">
+
+            <li>
+                <a href="#">Home</a>
+            </li>
+
+            <li class="dropdown">
+                <a href="#">Menu </a>
+                <ul class="dropdown-content">
+                    <li><a href="#">Tacos 🌮</a></li>
+                    <li><a href="#">Burritos & Bowls</a></li>
+                    <li><a href="#">Quesadillas</a></li>
+                    <li><a href="#">Sides & Snacks</a></li>
+                    <li><a href="#">Drinks</a></li>
+                    <li><a href="#">Desserts</a></li>
+                </ul>
+            </li>
+
+            <li class="dropdown">
+                <a href="#">Specials</a>
+                <ul class="dropdown-content">
+                    <li><a href="#">Margarita Monday</a></li>
+                    <li><a href="#">Street Taco Tuesday</a></li>
+                    <li><a href="#">Happy Hour</a></li>
+                </ul>
+            </li>
+
+            <li>
+                <a href="#">Locations</a>
+            </li>
+
+            <li class="dropdown">
+                <a href="#">About Us</a>
+                <ul class="dropdown-content">
+                    <li><a href="#">Our Story</a></li>
+                    <li><a href="#">Meet the Team</a></li>
+                    <li><a href="#">Our Ingredients</a></li>
+                    <li><a href="#">Careers</a></li>
+                </ul>
+            </li>
+
+            <li>
+                <a href="#">Order Now</a>
+            </li>
+        </ul>
+    </nav>
+
+    <section class="header">
+        <h1>🌮 Taco Loco</h1>
+        <p>Locally sourced ingredients always fresh and full of flavor!</p>
+    </section>
+
+    <main>
+
+        <section>
+            <h2> Authentic Mexican Flavor</h2>
+
+            <p>
+                Taco Loco is inspired by the culinary traditions of southern and central Mexico. Whether you're stopping by for a quick bite or indulging in a leisurely meal, we aim to provide an unforgettable experience that captures the heart and soul of Mexico.
+            </p>
+        </section>
+
+        <img class="main-taco" src="taco.jpg" alt="Taco">
+
+        <section>
+            <h2>Our Menu</h2>
+
+            <table class="menu-table">
+                <tr>
+                    <th>Item</th>
+                    <th>Price</th>
+                </tr>
+
+                <tr>
+                    <td>Al Pastor Taco</td>
+                    <td>$3.00</td>
+
+                </tr>
+
+                <tr>
+                    <td>Asada Taco</td>
+                    <td>$4.00</td>
+
+                </tr>
+
+                <tr>
+                    <td>Chicken Taco</td>
+                    <td>$3.50</td>
+                   
+                </tr>
+
+                <tr>
+                    <td>Cheese Quesadilla</td>
+                    <td>$6.50</td>
+                </tr>
+            </table>
+        </section>
+
+        <section class="special">
+            <h2>Street Taco Tuesday</h2>
+            <p>3 street tacos, chips, and a beer for only $10!</p>
+        </section>
+
+        <section>
+            <h2>Our Food</h2>
+
+            <div class="gallery">
+                <img src="margaritas.jpg" alt="Margaritas">
+                <img src="mexicanfood.jpg" alt="Mexican Food">
+            </div>
+        </section>
+
+        <a class="order-button" href="#">Order Now</a>
+    </main>
+
+    <footer>
+        © 2026 Taco Loco
+    </footer>
+</body>
+</html>
