@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Opacity and hover</title>
+
+<style>
+    body {
+        background-color: rgb(153, 132, 202);
+        font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        color:rgb(45, 20, 61);
+        text-align:center;
+    }  
+    
+    .img-one {
+        opacity: 0.40;
+        border: 2pt solid;
+    }
+
+    .img-one:hover {
+        opacity: 1.0;
+    }
+
+    .img-two {
+        opacity: 0.60;
+        border: 4pt groove;
+    }
+
+    .img-two:hover {
+        opacity: .85;
+        box-shadow: 0 10px 25px rgb(13, 44, 56);
+    }
+    table {
+        margin:25px auto;
+        border: 2px solid;
+        background-color: rgb(194, 186, 206);
+    }
+
+    h1{
+        text-align:center;
+    }
+</style>
+</head>
+<body>
+    
+    <h1>The Sky At Night</h1>
+    <p>The Milky Way Galaxy contains anywhere from 100 billion to 400 billion stars. The moon is the only natural satellite of the Earth and can be seen during daylight on average 25 days out of the month. 
+    </p>
+<table>
+    <tr>
+        <td>
+    <img class="img-one" src="stars.jpeg"
+    alt="Stars in sky" 
+    width="600"
+    height="350">
+    </td>
+    </tr>
+</table>
+
+<table>
+    <tr>
+        <td>
+    <img class="img-two" src="moon.jpeg"
+    alt="moon"
+    width="600"
+    height="350">
+    </td>
+    </tr>
+</table>
+</body>
+</html>
