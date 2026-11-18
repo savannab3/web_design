@@ -1,0 +1,242 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Relisting Assistant - Improved Prototype Candidate v16</title>
+<style>
+:root{--bg:#f6f7f9;--card:#fff;--text:#18202a;--muted:#667085;--line:#e4e7ec;--accent:#5b4bdb;--accent2:#eeeaff;--danger:#b42318;--success:#067647;--shadow:0 8px 28px rgba(16,24,40,.07)}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+header{background:#fff;border-bottom:1px solid var(--line);padding:18px 28px;display:flex;justify-content:space-between;align-items:center}
+.logo{font-weight:800;font-size:20px;letter-spacing:-.3px}.logo span{color:var(--accent)}
+.badge{font-size:12px;background:#f2f4f7;color:#475467;padding:7px 10px;border-radius:999px}
+main{max-width:1180px;margin:30px auto;padding:0 20px 60px}
+.hero{margin-bottom:22px}.hero h1{font-size:32px;letter-spacing:-1px;margin:0 0 7px}.hero p{color:var(--muted);margin:0}
+.grid{display:grid;grid-template-columns:390px 1fr;gap:22px;align-items:start}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow);padding:20px}
+.card h2{font-size:16px;margin:0 0 16px}.field{margin-bottom:16px}.field label{display:block;font-size:13px;font-weight:650;margin-bottom:7px}
+input,select,textarea{width:100%;border:1px solid #d0d5dd;border-radius:9px;padding:10px 11px;font:inherit;color:var(--text);background:#fff;outline:none}
+textarea{min-height:80px;resize:vertical}input:focus,select:focus,textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent2)}
+.upload{border:1.5px dashed #c8cdd5;border-radius:12px;padding:16px;text-align:center;background:#fafafa}.upload input{border:0;padding:0;margin-top:9px}
+.preview{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:12px}.preview img{display:block;width:100%;height:120px;object-fit:cover;border-radius:10px;border:1px solid var(--line);background:#f2f4f7}
+button{border:0;border-radius:9px;padding:11px 15px;font-weight:700;cursor:pointer;font:inherit}.primary{width:100%;background:var(--accent);color:#fff}.secondary{background:#f2f4f7;color:#344054}.primary:hover{filter:brightness(.96)}
+.notice{display:none;border-radius:9px;padding:10px 12px;font-size:13px;margin-bottom:14px}.error{background:#fef3f2;color:var(--danger);border:1px solid #fecdca}.success{background:#ecfdf3;color:var(--success);border:1px solid #abefc6}
+.results{min-height:500px}.empty{text-align:center;padding:80px 20px;color:var(--muted)}.empty .icon{font-size:40px;margin-bottom:10px}
+.result-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px}.result-head h2{margin:0}
+.tabs{display:flex;gap:7px;border-bottom:1px solid var(--line);margin-bottom:16px}.tab{background:transparent;color:#667085;border-radius:8px 8px 0 0;padding:10px 13px}.tab.active{color:var(--accent);background:var(--accent2)}
+.panel{display:none}.panel.active{display:block}.box{border:1px solid var(--line);border-radius:11px;padding:14px;margin-bottom:12px}.box h3{font-size:14px;margin:0 0 10px}.copyrow{display:flex;justify-content:space-between;gap:10px;align-items:flex-start}.copy{font-size:13px;line-height:1.55;white-space:pre-wrap;flex:1}.smallbtn{padding:7px 10px;font-size:12px;background:#f2f4f7;flex-shrink:0}
+.prices{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.price{padding:14px;border:1px solid var(--line);border-radius:10px}.price b{display:block;font-size:21px;margin-top:4px}.price small{color:var(--muted)}
+.tags{display:flex;flex-wrap:wrap;gap:7px}.tag{background:#f2f4f7;border-radius:999px;padding:7px 9px;font-size:12px}.disclosure{background:#fff8ed;border:1px solid #fedf89;color:#7a2e0e}.ai-box{background:#f8f7ff;border:1px solid #d9d3ff}.ai-label{display:inline-block;font-size:11px;font-weight:750;color:var(--accent);background:var(--accent2);padding:4px 7px;border-radius:999px;margin-bottom:8px}.ai-section{margin-top:10px}.ai-section strong{display:block;font-size:12px;margin-bottom:6px}.ai-note{font-size:11px;color:var(--muted);margin-top:10px;line-height:1.45}
+footer{text-align:center;color:#98a2b3;font-size:12px;margin-top:18px}
+@media(max-width:850px){.grid{grid-template-columns:1fr}.hero h1{font-size:27px}.prices{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header><div class="logo">Relisting <span>Assistant</span></div><div class="badge">Standalone prototype · No login required</div></header>
+<main>
+<section class="hero"><h1>Turn one item into ready-to-list drafts.</h1><p>Add the basics once. Use your item details and clothing photos to get marketplace copy, search keywords, and AI-assisted trend suggestions.</p></section>
+<div class="grid">
+<section class="card">
+<h2>1. Item details</h2>
+<div class="field"><label>Clothing photos <span style="color:#b42318">*</span></label>
+<div class="upload"><strong>Upload clothing photos</strong><div style="color:#667085;font-size:12px;margin-top:4px">Select several photos at once or add more later.</div><div class="ai-note" style="text-align:left;margin-top:9px">Photo previews are for your reference. This prototype does not analyze images; recommendations are generated from the item details you enter. Upload clothing photos only and avoid including personal or sensitive information.</div><input id="photos" type="file" accept="image/*" multiple><button type="button" class="secondary" id="addPhotos" style="margin-top:9px">Add more photos</button><div id="photoCount" style="color:#667085;font-size:12px;margin-top:8px">0 photos selected</div><div style="font-size:12px;font-weight:650;text-align:left;margin-top:12px">Photo previews</div><div id="preview" class="preview"></div></div></div>
+<div class="field"><label for="brand">Brand <span style="color:#b42318">*</span></label><input id="brand" placeholder="e.g. Levi's"></div>
+<div class="field"><label for="type">Clothing type <span style="color:#b42318">*</span></label>
+<select id="type"><option value="">Select type</option><option>Pants</option><option>Jeans</option><option>Shirt</option><option>Top</option><option>Dress</option><option>Skirt</option><option>Jacket</option><option>Coat</option><option>Sweater</option><option>Shoes</option><option>Bag</option><option>Other</option></select></div>
+<div class="field"><label for="style">Style / description <span style="color:#b42318">*</span></label><textarea id="style" placeholder="e.g. vintage 90s blue denim, relaxed straight leg, high rise"></textarea></div>
+<div class="field"><label for="size">Size <span style="color:#b42318">*</span></label><select id="size"><option value="">Select size</option><option>XXS</option><option>XS</option><option>S</option><option>M</option><option>L</option><option>XL</option><option>XXL</option><option>2</option><option>4</option><option>6</option><option>8</option><option>10</option><option>12</option><option>14</option><option>16</option><option>Other</option></select></div>
+<div class="field"><label for="condition">Condition <span style="color:#b42318">*</span></label><select id="condition"><option value="">Select condition</option><option value="new">New with tags</option><option value="excellent">Excellent / like new</option><option value="good">Good / gently worn</option><option value="fair">Fair / visible wear</option></select></div>
+<div class="field"><label for="flaws">Flaw notes</label><textarea id="flaws" placeholder="e.g. tiny mark near left cuff; light fading"></textarea></div>
+<button class="primary" id="generate">Generate listings</button>
+<div id="notice" class="notice error" role="alert" aria-live="polite"></div>
+</section>
+
+<section class="card results" id="results">
+<div class="empty"><div class="icon">✦</div><h2 style="color:#344054">Your listing kit will appear here</h2><p>Complete the item details and upload at least one photo.</p></div>
+</section>
+</div>
+<footer>Prototype pricing is an estimate generated from basic item rules. It is not based on live marketplace comparisons. Check similar sold listings and review the suggested price before publishing.</footer>
+</main>
+<script>
+const $=id=>document.getElementById(id);
+const photos=$('photos');
+let selectedPhotos=[];
+function renderPhotoPreview(){const p=$('preview');p.innerHTML='';$('photoCount').textContent=`${selectedPhotos.length} photo${selectedPhotos.length===1?'':'s'} selected`;if(!selectedPhotos.length){p.innerHTML='<div style="grid-column:1/-1;color:#667085;font-size:12px;padding:10px 0">No photos selected yet. Choose one or more image files above.</div>';return}selectedPhotos.forEach((file,i)=>{const wrap=document.createElement('div');wrap.style.position='relative';wrap.style.minHeight='120px';const img=document.createElement('img');img.alt=`Clothing photo ${i+1}`;img.style.display='block';img.style.width='100%';img.style.height='120px';img.style.objectFit='cover';img.style.borderRadius='10px';img.style.border='1px solid var(--line)';img.style.background='#f2f4f7';const reader=new FileReader();reader.onload=()=>{img.src=reader.result};reader.onerror=()=>{wrap.insertAdjacentHTML('afterbegin','<div style="font-size:12px;color:#b42318;padding:10px">Preview unavailable</div>')};reader.readAsDataURL(file);const remove=document.createElement('button');remove.type='button';remove.textContent='×';remove.title='Remove photo';remove.style.cssText='position:absolute;right:4px;top:4px;width:25px;height:25px;padding:0;border-radius:50%;background:#fff;color:#344054;border:1px solid #d0d5dd;font-size:17px;line-height:20px;cursor:pointer';remove.onclick=()=>{selectedPhotos.splice(i,1);renderPhotoPreview()};wrap.appendChild(img);wrap.appendChild(remove);p.appendChild(wrap)})}
+function addSelectedFiles(fileList){const incoming=[...fileList].filter(f=>f.type.startsWith('image/'));const existing=new Set(selectedPhotos.map(f=>`${f.name}|${f.size}|${f.lastModified}`));incoming.forEach(f=>{const key=`${f.name}|${f.size}|${f.lastModified}`;if(!existing.has(key)){selectedPhotos.push(f);existing.add(key)}});renderPhotoPreview();photos.value=''}
+photos.addEventListener('change',()=>addSelectedFiles(photos.files));$('addPhotos').addEventListener('click',()=>photos.click());
+function notice(msg,success=false){const n=$('notice');n.textContent=msg;n.className='notice '+(success?'success':'error');n.style.display='block';n.scrollIntoView({behavior:'smooth',block:'nearest'});}
+function esc(s){return s.replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]));}
+function keywords(brand,type,style){
+ const description=String(style||'').trim().toLowerCase().replace(/\s+/g,' ');
+ const out=[]; const seen=new Set();
+ const addKeyword=(value)=>{
+   const keyword=String(value||'').trim().replace(/\s+/g,' ');
+   if(!keyword) return;
+   const normalized=keyword.toLowerCase();
+   const fullDescription=description.replace(/[^a-z0-9]+/g,' ').trim();
+   const normalizedKeyword=normalized.replace(/[^a-z0-9]+/g,' ').trim();
+   if(normalizedKeyword===fullDescription) return;
+   if(/[.!?]/.test(keyword) || keyword.length>30) return;
+   if(normalizedKeyword.split(/\s+/).length>3) return;
+   if(!seen.has(normalized)){seen.add(normalized);out.push(keyword);}
+ };
+ const cleanField=v=>String(v||'').trim().replace(/\s+/g,' ');
+ const b=cleanField(brand), t=cleanField(type);
+ if(b && b.length<=30 && !/[.!?]/.test(b)) addKeyword(b);
+ if(t && t.length<=30 && !/[.!?]/.test(t)) addKeyword(t);
+
+ const phrases=['high waisted','low waisted','high rise','low rise','wide leg','straight leg',
+  'relaxed fit','slim fit','regular fit','long sleeve','short sleeve','button up','zip up',
+  'graphic tee','graphic print','crop top','mini skirt','midi skirt','maxi skirt','cargo pants',
+  'cargo skirt','denim jacket','leather jacket','oversized fit','bootcut jeans','flare jeans',
+  'mom jeans','baggy jeans','straight jeans','wide leg jeans'];
+ const terms=['y2k','vintage','retro','streetwear','minimalist','boho','cottagecore','gorpcore',
+  'preppy','grunge','coquette','western','workwear','cargo','baggy','oversized','cropped','bootcut',
+  'flare','denim','leather','linen','corduroy','athleisure','festival','utility','neutral','black',
+  'white','blue','brown','beige','gray','grey','graphic','printed','striped','floral','plaid',
+  'distressed','classic','casual','formal','relaxed','slim','fitted','knit','ribbed','satin','suede','wool','cotton'];
+ phrases.forEach(term=>{if(description.includes(term)) addKeyword(term);});
+ terms.forEach(term=>{const re=new RegExp('\\b'+term.replace(/[.*+?^${}()|[\\]\\]/g,'\\$&')+'\\b','i');if(re.test(description))addKeyword(term);});
+
+ const stopWords=new Set(['the','and','with','for','from','this','that','item','piece','style','size',
+  'condition','very','great','nice','good','like','has','have','fits','fit','wear','worn','look','looks',
+  'color','colour','made','make','brand','is','are','was','were','in','on','of','to','a','an','my','new','used','please','shown']);
+ // Final fallback extracts individual words only. It can never preserve the full description.
+ description.split(/[^a-z0-9'-]+/i)
+  .map(word=>word.replace(/[^a-z0-9'-]/gi,'').trim().toLowerCase())
+  .filter(word=>word.length>=3 && word.length<=20 && !stopWords.has(word))
+  .forEach(word=>addKeyword(word));
+ return out.slice(0,18);
+}
+function prices(type,condition,style){
+ let base={Pants:42,Jeans:48,Shirt:28,Top:25,Dress:45,Skirt:32,Jacket:58,Coat:72,Sweater:38,Shoes:55,Bag:48,Other:35}[type]||35;
+ if(condition==='new')base*=1.25;if(condition==='excellent')base*=1.1;if(condition==='fair')base*=.72;
+ if(/vintage|rare|leather|y2k/i.test(style))base*=1.12;
+ base=Math.round(base/5)*5;
+ return {quick:Math.max(10,base-10),fair:base,margin:base+15};
+}
+function conditionText(c,flaws){
+ const labels={new:'New with tags.',excellent:'Excellent pre-owned condition with minimal signs of wear.',good:'Good pre-owned condition with normal signs of wear.',fair:'Fair pre-owned condition with visible signs of wear.'};
+ let t=labels[c]||'Condition not specified.';
+ if(flaws.trim())t+=' Flaws: '+flaws.trim().replace(/\s+/g,' ')+'.';
+ else t+=' No major flaws noted by seller.';
+ return t;
+}
+function titleFor(platform,b,t,s,size,ks){
+ const clean=s.replace(/[.]/g,'').trim();
+ if(platform==='Depop') return `${b} ${clean} ${t} ${size}`.replace(/\s+/g,' ').slice(0,80);
+ if(platform==='eBay') return `${b} ${clean} ${t} Size ${size}`.replace(/\s+/g,' ').slice(0,80);
+ return `${b} ${clean} ${t} ${size}`.replace(/\s+/g,' ').slice(0,80);
+}
+function desc(platform,b,t,s,size,cond,flaws,ks){
+ const tags=ks.slice(0,10).map(x=>{
+  const value=String(x||'').trim();
+  // Hashtags come only from individual keywords, never from the full description.
+  if(!value || value.length>32 || /[.!?]/.test(value)) return '';
+  const words=value.split(/\s+/)
+    .map(word=>word.replace(/[^a-z0-9]/gi,''))
+    .filter(Boolean);
+  if(!words.length || words.length>4) return '';
+  return '#'+words.join('');
+}).filter(Boolean).join(' ');
+ if(platform==='eBay') return `Brand: ${b}
+Item: ${t}
+Size: ${size}
+Style: ${s}
+
+Condition: ${conditionText(cond,flaws)}
+
+Keywords: ${ks.join(', ')}
+
+Please review photos for overall condition and details.`;
+ if(platform==='Poshmark') return `✨ ${b} ${s}
+
+Size: ${size}
+Condition: ${conditionText(cond,flaws)}
+
+Style notes: ${s}
+
+${tags}
+
+Bundle to save on shipping where available.`;
+ return `${b} ${s} — size ${size}.
+
+${conditionText(cond,flaws)}
+
+Style keywords: ${ks.join(' · ')}
+
+${tags}`;
+}
+function aiTrendSuggestions(brand,type,style,photoCount){
+ const text=String(style||'').toLowerCase();
+ const keywordList=keywords(brand,type,style);
+ const phrasePool=['high waisted','low waisted','high rise','low rise','wide leg','straight leg','relaxed fit','slim fit','regular fit','long sleeve','short sleeve','button up','zip up','graphic tee','graphic print','crop top','mini skirt','midi skirt','maxi skirt','cargo pants','denim jacket','leather jacket','oversized fit','bootcut jeans','flare jeans','mom jeans','baggy jeans','straight jeans','wide leg jeans'];
+ const phrases=phrasePool.filter(x=>text.includes(x)).slice(0,6);
+ const colors=['black','white','blue','brown','beige','gray','grey','red','green','pink','purple','yellow','orange'].filter(x=>new RegExp('\\b'+x+'\\b','i').test(text));
+ if(colors.length && phrases.length<6) phrases.push(...colors.slice(0,6-phrases.length));
+ const search=keywordList.slice(0,10);
+
+ // Prototype-mode trend suggestions: when live trend data/computer vision is unavailable,
+ // always provide exactly 3 mock suggestions based on the primary color and item keywords.
+ const color=colors[0] || '';
+ const itemText=[type||'',style||'',...keywordList].join(' ').toLowerCase();
+ let trends;
+ if(color==='blue' && /top|shirt|tee|blouse/.test(itemText)) trends=['Electric Cobalt','Y2K Pop','Casual Chic'];
+ else if(color==='black' && /dress/.test(itemText)) trends=['Midnight Minimalism','Dark Romance','Modern Classic'];
+ else if(color==='brown' && /jacket|coat|outerwear/.test(itemText)) trends=['Chocolate Vintage','Western Revival','Earth-Tone Utility'];
+ else if(color==='green' && /cargo|pants|jacket|utility/.test(itemText)) trends=['Utility Green','Gorpcore','Outdoor Streetwear'];
+ else if(color==='pink' && /top|dress|skirt/.test(itemText)) trends=['Soft Girl','Coquette Pink','Romantic Y2K'];
+ else if(color==='white' && /shirt|top|dress/.test(itemText)) trends=['Clean Girl','Minimal White','Classic Essentials'];
+ else if(/denim|jeans/.test(itemText)) trends=['Denim Revival','Vintage Americana','Casual Streetwear'];
+ else if(/cargo|utility/.test(itemText)) trends=['Utility Core','Gorpcore','Streetwear Workwear'];
+ else if(/vintage|retro/.test(itemText)) trends=['Retro Revival','Thrifted Vintage','Nostalgic Streetwear'];
+ else if(/y2k/.test(itemText)) trends=['Y2K Pop','2000s Revival','Playful Streetwear'];
+ else if(/streetwear/.test(itemText)) trends=['Urban Streetwear','Casual Edge','Everyday Utility'];
+ else trends=['Everyday Casual','Modern Vintage','Trend-Forward Basics'];
+
+ return {search,phrases,trends,photoCount};
+}
+function aiSuggestionsHtml(ai){
+ const list=(items,empty)=>items.length?items.map(x=>`<span class="tag">${esc(x)}</span>`).join(''): `<span style="font-size:12px;color:#667085">${empty}</span>`;
+ return `<div class="box ai-box"><div class="ai-label">AI-ASSISTED FEATURE · PROTOTYPE</div><h3>Keyword Trend Suggestions</h3><p style="font-size:12px;color:#475467;margin:0 0 10px">Uses the clothing details you enter (such as brand, item type, and style) to suggest relevant search terms and possible aesthetics. This prototype does not analyze uploaded photos or check live fashion trends.</p>
+ <div class="ai-section"><strong>1. Search Keywords</strong><div class="tags">${list(ai.search,'Add more item details for keyword suggestions.')}</div></div>
+ <div class="ai-section"><strong>2. Fashion/Style Phrases</strong><div class="tags">${list(ai.phrases,'No clear short fashion phrases were identified from the provided information.')}</div></div>
+ <div class="ai-section"><strong>3. Possible Trend Suggestions</strong><div class="tags">${list(ai.trends,"Prototype mode: 3 mock trend suggestions are generated from the item's primary color and keywords.")}</div></div>
+ <div class="ai-note"><strong>Review before using:</strong> These are AI-assisted prototype suggestions, not verified facts or current trend data. Check that every keyword and phrase accurately describes your item, and edit the results before publishing. The three trend suggestions are mock suggestions based on the item details you entered.</div>
+ <details style="margin-top:12px;border-top:1px solid #e4e7ec;padding-top:10px"><summary style="cursor:pointer;font-size:12px;font-weight:700;color:#5145cd">View updated context-rich AI prompt</summary>
+ <div style="font-size:12px;line-height:1.6;color:#475467;margin-top:9px"><strong>Updated AI instructions</strong><p style="margin:7px 0">You are the AI recommendation feature in Relisting Assistant, an app for independent clothing resellers. Use the item information entered by the seller, including brand, clothing type, and style, to recommend relevant search keywords, fashion phrases, and three possible trend or aesthetic suggestions. Do not claim to analyze the uploaded photo because image recognition is not available in this prototype. Organize the results into three sections. Use only details supported by the photo and information provided. Do not invent details, repeat keywords, or use the entire description provided. Do not invent details, repeat keywords, or use the entire description as one keyword. If information is unclear, do not guess. If live trend data is unavailable, provide three mock suggestions based on the item’s colors and keywords.</p><strong>Prototype note:</strong> This prototype simulates the recommendation behavior using the item details entered. It does not perform live image recognition or retrieve live trend data, so trend suggestions are mock suggestions based on the entered color/style keywords.</div></details></div>`;
+}
+function render(data){
+ const ps=prices(data.type,data.condition,data.style),ks=keywords(data.brand,data.type,data.style); const ai=aiTrendSuggestions(data.brand,data.type,data.style,data.photoCount);
+ const cond=conditionText(data.condition,data.flaws);
+ const platforms=['Depop','eBay','Poshmark'];
+ let listingHtml=platforms.map((p,i)=>`<div class="panel ${i===0?'active':''}" data-panel="${p}">
+ <div class="box"><h3>Title</h3><div class="copyrow"><div class="copy" id="title-${p}">${esc(titleFor(p,data.brand,data.type,data.style,data.size,ks))}</div><button class="smallbtn" onclick="copyText('title-${p}',this)">Copy</button></div></div>
+ <div class="box"><h3>Description</h3><div class="copyrow"><div class="copy" id="desc-${p}">${esc(desc(p,data.brand,data.type,data.style,data.size,data.condition,data.flaws,ks))}</div><button class="smallbtn" onclick="copyText('desc-${p}',this)">Copy</button></div></div>
+ </div>`).join('');
+ $('results').innerHTML=`<div class="result-head"><h2>2. Listing kit</h2><button class="secondary" onclick="window.scrollTo({top:0,behavior:'smooth'})">Edit item</button></div>
+ <div class="tabs">${platforms.map((p,i)=>`<button class="tab ${i===0?'active':''}" onclick="tab('${p}',this)">${p}</button>`).join('')}</div>
+ ${listingHtml}
+ <div class="box"><h3>Pricing recommendation</h3><div class="prices">
+ <div class="price"><small>Quick sale</small><b>$${ps.quick}</b><small>Lower price / faster turnover</small></div>
+ <div class="price"><small>Fair market</small><b>$${ps.fair}</b><small>Balanced starting point</small></div>
+ <div class="price"><small>Higher margin</small><b>$${ps.margin}</b><small>More room for negotiation</small></div></div></div>
+ ${aiSuggestionsHtml(ai)}
+ <div class="box"><h3>Search keywords</h3><div class="tags">${ks.map(k=>`<span class="tag">${esc(k)}</span>`).join('')}</div></div>
+ <div class="box"><h3>Suggested hashtags</h3><div class="tags">${ks.slice(0,9).map(k=>`<span class="tag">#${esc(k.replace(/[^a-z0-9]/gi,''))}</span>`).join('')}</div></div>
+ <div class="box disclosure"><h3>Standardized flaw disclosure</h3><div class="copyrow"><div class="copy" id="disclosure">${esc(cond)}</div><button class="smallbtn" onclick="copyText('disclosure',this)">Copy</button></div></div>`;
+}
+function tab(p,btn){document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));document.querySelectorAll('.panel').forEach(x=>x.classList.remove('active'));btn.classList.add('active');document.querySelector(`[data-panel="${p}"]`).classList.add('active')}
+async function copyText(id,button){const textToCopy=$(id)?.innerText||'';if(!textToCopy)return;try{await navigator.clipboard.writeText(textToCopy);const original=button.textContent;button.textContent='Copied';setTimeout(()=>button.textContent=original,900)}catch(error){notice('Copying was unavailable in this browser. Please select and copy the text manually.')}}
+$('generate').addEventListener('click',()=>{
+ const required=[['brand','Brand'],['type','Clothing type'],['style','Style / description'],['size','Size']];
+ if(!selectedPhotos.length){notice('Missing: Clothing photos. Please upload at least one clothing photo before generating your listings.');return}
+ const missing=required.filter(([id])=>!$(id).value.trim()).map(([,label])=>label);
+ if(missing.length){notice(`Missing: ${missing.join(', ')}. Please complete ${missing.length===1?'this field':'these fields'} before generating your listings.`);return}
+ if(!$('condition').value){notice('Missing: Condition. Please select a condition rating before continuing.');return}
+ notice('Listing kit generated successfully.',true);
+ render({brand:$('brand').value.trim(),type:$('type').value,size:$('size').value,style:$('style').value.trim(),condition:$('condition').value,flaws:$('flaws').value.trim(),photoCount:selectedPhotos.length});
+});
+</script>
+</body>
+</html>
